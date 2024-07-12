@@ -1,0 +1,30 @@
+<app-category></app-category>
+<br />
+<swiper-container
+  class="container-fluid"
+  pagination="true"
+  pagination-clickable="true"
+  navigation="true"
+  centered-slides="true"
+  autoplay-delay="2500"
+  autoplay-disable-on-interaction="false"
+>
+  <swiper-slide><img class="img-fluid" src="Slides/1.webp" /></swiper-slide>
+  <swiper-slide><img class="img-fluid" src="Slides/2.webp" /></swiper-slide>
+  <swiper-slide><img class="img-fluid" src="Slides/3.webp" /></swiper-slide>
+  <swiper-slide><img class="img-fluid" src="Slides/4.webp" /></swiper-slide>
+  <swiper-slide><img class="img-fluid" src="Slides/5.webp" /></swiper-slide>
+  <swiper-slide><img class="img-fluid" src="Slides/6.webp" /></swiper-slide>
+  <swiper-slide><img class="img-fluid" src="Slides/7.webp" /></swiper-slide>
+  <swiper-slide><img class="img-fluid" src="Slides/8.webp" /></swiper-slide>
+</swiper-container>
+
+<br />
+
+<p class="title">Featured Products</p>
+
+<swiper-container scrollbar-hide="false" slides-per-view="2" class="container">
+  <swiper-slide *ngFor="let product of products | async">
+    <app-product [product]="product"></app-product>
+  </swiper-slide>
+</swiper-container>

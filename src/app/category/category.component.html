@@ -1,0 +1,124 @@
+<div class="container-fluid categories">
+  <mat-card>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <img src="grocery.webp" />
+          <button mat-button>Grocery</button>
+        </div>
+        <div class="col">
+          <img src="mobiles.webp" />
+          <button mat-button>Mobiles</button>
+        </div>
+        <div class="col">
+          <img src="fashion.webp" />
+          <button
+            style="white-space: nowrap"
+            mat-button
+            [matMenuTriggerFor]="fashion"
+          >
+            <span>Fashion</span>
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </button>
+          <mat-menu #fashion="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="top_wear">
+              Mens Top Wear
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="footwear">
+              Mens Footwear
+            </button>
+          </mat-menu>
+
+          <mat-menu #top_wear="matMenu">
+            <p style="text-align: center">
+              More In Mens <br />
+              Top Wear
+            </p>
+            <button mat-menu-item>All</button>
+            <button mat-menu-item>Men's T-Shirts</button>
+            <button mat-menu-item>Men's Casual Shirts</button>
+          </mat-menu>
+          <mat-menu #footwear="matMenu">
+            <p style="text-align: center">
+              More In Mens <br />
+              Footwear
+            </p>
+            <button mat-menu-item>All</button>
+            <button mat-menu-item>Men's Sports Shoes</button>
+            <button mat-menu-item>Men's Casual Shoes</button>
+          </mat-menu>
+        </div>
+        <div class="col">
+          <img src="electronics.webp" />
+          <button mat-button [matMenuTriggerFor]="electronics">
+            <div class="d-flex align-items-center">
+              <span>Electronics</span>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </div>
+          </button>
+          <mat-menu #electronics="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="audio">Audio</button>
+            <button mat-menu-item [matMenuTriggerFor]="gaming">Gaming</button>
+          </mat-menu>
+
+          <mat-menu #audio="matMenu">
+            <p style="text-align: center">More In Audio</p>
+            <button mat-menu-item>All</button>
+            <button mat-menu-item>Bluetooh Headphones</button>
+            <button mat-menu-item>Wired Headphones</button>
+          </mat-menu>
+          <mat-menu #gaming="matMenu">
+            <p style="text-align: center">More In Gaming</p>
+            <button mat-menu-item>All</button>
+            <button mat-menu-item>Gaming Consoles</button>
+            <button mat-menu-item>Gaming Mouse</button>
+          </mat-menu>
+        </div>
+        <div class="col">
+          <img src="home and furniture.webp" />
+          <button
+            style="white-space: nowrap"
+            mat-button
+            [matMenuTriggerFor]="home_furniture"
+          >
+            <span>Home And Furniture</span>
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </button>
+          <mat-menu #home_furniture="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="home_furnishing">
+              Home Furnishing
+            </button>
+          </mat-menu>
+
+          <mat-menu #home_furnishing="matMenu">
+            <p style="text-align: center">
+              More In Home <br />
+              Furnishing
+            </p>
+            <button mat-menu-item>All</button>
+            <button mat-menu-item>Bed Linens</button>
+            <button mat-menu-item>BedSheets</button>
+          </mat-menu>
+        </div>
+        <div class="col">
+          <img src="appliances.webp" />
+          <button mat-button>Appliances</button>
+        </div>
+        <div class="col">
+          <img src="travel.webp" />
+          <button mat-button>Travel</button>
+        </div>
+        <div class="col">
+          <img src="toys.webp" />
+          <button style="white-space: nowrap" mat-button>
+            Beauty, toys And More
+          </button>
+        </div>
+        <div class="col">
+          <img src="bikes.webp" />
+          <button mat-button>Bikes</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

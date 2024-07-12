@@ -1,0 +1,55 @@
+.search {
+  background-color: #f0f5ff;
+  outline: none;
+  border: none;
+  padding: 10px;
+  width: 323px;
+  border-radius: 15px 0px 0px 20px;
+}
+
+.search-btn {
+  background-color: #f0f5ff;
+  outline: none;
+  border: none;
+  border-radius: 0px 15px 15px 0px;
+  padding: 10px 9px;
+}
+
+.login {
+  color: black;
+  background-color: white;
+  box-shadow: none;
+}
+
+.login:hover {
+  color: white;
+  background-color: #2a55e5;
+}
+
+.link {
+  color: black;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: black;
+}
+
+.nav-menu {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.example-container {
+  width: 100%;
+  height: 100%;
+}
+
+.example-sidenav-content {
+  height: 100%;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}

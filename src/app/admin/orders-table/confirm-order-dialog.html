@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>
+  Are You Sure You Want To Confirm The Order?
+  <mat-dialog-content>Press Confirm To Confirm The Order</mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button
+      (click)="confirmOrder(data.userId, data.prodId)"
+      color="warn"
+      mat-raised-button
+      mat-dialog-close
+    >
+      Confirm
+    </button>
+  </mat-dialog-actions>
+</h2>

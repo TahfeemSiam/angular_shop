@@ -1,0 +1,42 @@
+.form-card {
+  margin: 0 auto;
+  padding-bottom: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(233, 229, 235, 1) 0%,
+    rgba(226, 250, 255, 1) 100%
+  );
+}
+
+.background {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(64, 199, 161, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  height: 100%;
+}
+
+.form-title {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 30px;
+  margin-top: 10px;
+  color: black;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .form-field {
+    width: 400px;
+  } */
+
+.register {
+  padding: 10px 50px;
+}

@@ -1,0 +1,106 @@
+<div class="container">
+  <mat-card [ngStyle]="{ padding: '20px 0' }" *ngFor="let p of product | async">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <!-- <img
+            [ngStyle]="{ width: '300px', heigth: '300px', marginLeft: '40px' }"
+            src="images/{{ p.image_1 }}"
+          />
+          <div class="d-flex gap-3">
+            <img
+              [ngStyle]="{ width: '200px', heigth: '50px' }"
+              src="images/{{ p.image_2 }}"
+            />
+            <img
+              [ngStyle]="{ width: '200px', heigth: '50px' }"
+              src="images/{{ p.image_3 }}"
+            />
+          </div> -->
+          <div class="d-flex align-contents-center">
+            <swiper-container
+              class="mySwiper"
+              effect="cards"
+              grab-cursor="true"
+            >
+              <swiper-slide>
+                <img
+                  class="image"
+                  src="images/{{ p.image_1 }}"
+                  (click)="makeImageLarge(p.image_1)"
+                />
+              </swiper-slide>
+              <swiper-slide>
+                <img
+                  class="image"
+                  src="images/{{ p.image_2 }}"
+                  (click)="makeImageLarge(p.image_2)"
+                />
+              </swiper-slide>
+              <swiper-slide>
+                <img
+                  class="image"
+                  src="images/{{ p.image_3 }}"
+                  (click)="makeImageLarge(p.image_3)"
+                />
+              </swiper-slide>
+            </swiper-container>
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="d-flex flex-column align-items-center"
+            [ngStyle]="{ marginTop: '30%' }"
+          >
+            <p>{{ p.product_name }}</p>
+            <p>Price: ${{ p.product_price }}</p>
+            <mat-form-field>
+              <mat-label>Select Quantity</mat-label>
+              <mat-select #quantity>
+                <mat-option
+                  *ngFor="
+                    let quantity of [].constructor(p.max_quantity);
+                    let i = index
+                  "
+                  [value]="i + 1"
+                  >{{ i + 1 }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <button
+              mat-raised-button
+              (click)="
+                add(
+                  0,
+                  p.product_id,
+                  p.product_name,
+                  p.image_1,
+                  p.product_price,
+                  quantity,
+                  'pending'
+                )
+              "
+              [ngStyle]="{ color: '#fff', backgroundColor: '#fc5c65' }"
+            >
+              Add To Cart
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <br />
+            <button
+              mat-raised-button
+              routerLink="/cart"
+              [ngStyle]="{ color: '#fff', backgroundColor: '#ffa801' }"
+            >
+              Go To Cart
+              <mat-icon>shopping_cart_checkout</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<!-- <div *ngFor="let item of [].constructor(10); let i = index">
+    {{ i + 1 }}
+  </div> -->

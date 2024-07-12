@@ -1,0 +1,245 @@
+<div class="container d-flex justify-content-center form">
+  <mat-card *ngIf="!upload">
+    <mat-card-content>
+      <mat-progress-bar
+        *ngIf="showProgressBar"
+        mode="indeterminate"
+      ></mat-progress-bar>
+      <div class="row">
+        <div
+          class="col d-flex justify-content-center"
+          style="flex-direction: column"
+        >
+          <img style="height: 300px" src="Adding-Products_Cropped.png" />
+        </div>
+        <div class="col">
+          <mat-card-header>
+            <mat-card-title>Add Product</mat-card-title>
+            <mat-card-subtitle>Fill The Form Data</mat-card-subtitle>
+          </mat-card-header>
+          <br />
+          <form #f="ngForm" (ngSubmit)="productInfo(f)">
+            <mat-form-field>
+              <mat-label>Product Name</mat-label>
+              <input
+                [disabled]="formInputs"
+                required
+                ngModel
+                name="product_name"
+                type="text"
+                matInput
+              />
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Product Price</mat-label>
+              <input
+                [disabled]="formInputs"
+                required
+                ngModel
+                name="product_price"
+                type="number"
+                matInput
+              />
+              <span matTextPrefix>$&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Select A Option</mat-label>
+              <mat-select
+                [disabled]="formInputs"
+                ngModel
+                name="product_condition"
+                required
+              >
+                <mat-option [value]="'New'">New</mat-option>
+                <mat-option [value]="'Used'">Used</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Select A Category</mat-label>
+              <mat-select
+                ngModel
+                name="product_category"
+                required
+                [disabled]="formInputs"
+              >
+                <mat-option (click)="hideSubCategory()" value="Grocery"
+                  >Grocery</mat-option
+                >
+                <mat-option (click)="hideSubCategory()" value="Mobiles"
+                  >Mobiles</mat-option
+                >
+                <mat-option (click)="fashion()" value="Fashion"
+                  >Fashion</mat-option
+                >
+                <mat-option (click)="electronics()" value="Electronics"
+                  >Electronics</mat-option
+                >
+                <mat-option (click)="furniture()" value="Home And Furniture"
+                  >Home And Furniture</mat-option
+                >
+                <mat-option (click)="hideSubCategory()" value="Appliances"
+                  >Appliances</mat-option
+                >
+                <mat-option
+                  (click)="hideSubCategory()"
+                  value="Beauty, Toys And More"
+                  >Beauty, Toys And More</mat-option
+                >
+                <mat-option (click)="hideSubCategory()" value="Bikes"
+                  >Bikes</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <br />
+            <mat-form-field *ngIf="showFashsionSubCategory">
+              <mat-label>Choose A Subcategory</mat-label>
+              <mat-select
+                name="product_sub_category"
+                ngModel
+                required
+                [disabled]="formInputs"
+              >
+                <mat-optgroup label="Mens Top Wear">
+                  <mat-option value="Men's T-Shirts">Men's T-Shirts</mat-option>
+                  <mat-option value="Men's Casual Shirts"
+                    >Men's Casual Shirts</mat-option
+                  >
+                </mat-optgroup>
+                <mat-optgroup label="Mens FootWear">
+                  <mat-option value="Men's Sports Shoes"
+                    >Men's Sports Shoes</mat-option
+                  >
+                  <mat-option value="Men's Casual Shoes"
+                    >Men's Casual Shoes</mat-option
+                  >
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+            <!-- <br /> -->
+            <mat-form-field *ngIf="showElectronicsSubCategory">
+              <mat-label>Choose A Subcategory</mat-label>
+              <mat-select
+                name="product_sub_category"
+                required
+                ngModel
+                [disabled]="formInputs"
+              >
+                <mat-optgroup label="Audio">
+                  <mat-option value="Bluetooth Headphones"
+                    >Bluetooth Headphones</mat-option
+                  >
+                  <mat-option value="Wired Headphones"
+                    >Wired Headphones</mat-option
+                  >
+                </mat-optgroup>
+                <mat-optgroup label="Gaming">
+                  <mat-option value="Gaming Console">Gaming Console</mat-option>
+                  <mat-option value="Gaming Mouse">Gaming Mouse</mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+            <!-- <br /> -->
+            <mat-form-field *ngIf="showFurnitureSubCategory">
+              <mat-label>Choose A Subcategory</mat-label>
+              <mat-select
+                ngModel
+                required
+                [disabled]="formInputs"
+                name="product_sub_category"
+              >
+                <mat-optgroup label="Home Furnishing">
+                  <mat-option value="Bed Linens">Bed Linens</mat-option>
+                  <mat-option value="BedSheets">BedSheets</mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Quantity:</mat-label>
+              <input
+                [disabled]="formInputs"
+                matInput
+                ngModel
+                type="number"
+                name="max_quantity"
+              />
+              <mat-icon matSuffix>bar_chart</mat-icon>
+            </mat-form-field>
+            <input hidden ngModel="Yes" type="text" name="product_available" />
+            <input
+              hidden
+              ngModel="None"
+              type="text"
+              name="product_sub_category"
+            />
+            <input hidden ngModel type="text" name="image_1" />
+            <input hidden ngModel type="text" name="image_2" />
+            <input hidden ngModel type="text" name="image_3" />
+            <br />
+            <mat-form-field class="example-full-width">
+              <mat-label>Enter Search Tags</mat-label>
+              <textarea
+                [disabled]="formInputs"
+                ngModel
+                name="search"
+                required
+                matInput
+              ></textarea>
+            </mat-form-field>
+            <br />
+            <button [disabled]="formInputs" mat-flat-button color="accent">
+              Continue <mat-icon>navigate_next</mat-icon>
+            </button>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="upload && !submitButton">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Image Upload</mat-card-title>
+        <mat-card-subtitle>Select 3 Image Files To Upload</mat-card-subtitle>
+      </mat-card-header>
+      <input
+        id="upload"
+        type="file"
+        placeholder="Upload a file"
+        multiple
+        hidden
+        (change)="getInputFileName($event)"
+      />
+      <label *ngIf="!submitButton" for="upload"
+        ><mat-icon>image</mat-icon> Upload Images</label
+      >
+      <br />
+      <button
+        [disabled]="submitButton"
+        (click)="submit()"
+        mat-flat-button
+        color="accent"
+      >
+        <mat-icon>check</mat-icon> Submit
+      </button>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="submitButton">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Product Has Been Created ✅</mat-card-title>
+        <mat-card-subtitle
+          >The Product Has Been Added To The Products Table And Is Also Visible
+          For The Customers 👨‍👩‍👧‍👦.</mat-card-subtitle
+        >
+      </mat-card-header>
+      <div class="d-flex justify-content-end">
+        <button mat-button>Go To Products Table 📋</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

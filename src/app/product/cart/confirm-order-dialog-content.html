@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Are You Sure You Want To Place This Order?</h2>
+<mat-dialog-content class="mat-typography">
+  <p>Once You Place The Order You Won't Be Able To Cancel It</p>
+  <p>
+    Before Delivering Your Order We Will Let You Know Through Your Email Address
+  </p>
+  <p>We Only Accept Cash On Delivery</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-fab
+    extended
+    mat-dialog-close
+    style="background-color: #ff5252; color: #fff"
+  >
+    <mat-icon>cancel</mat-icon>
+    Cancel
+  </button>
+  <button
+    mat-fab
+    extended
+    cdkFocusInitial
+    mat-dialog-close
+    style="background-color: #27ae60; color: #fff"
+    (click)="placeOrder()"
+  >
+    <mat-icon>local_shipping</mat-icon>
+    Confirm
+  </button>
+</mat-dialog-actions>

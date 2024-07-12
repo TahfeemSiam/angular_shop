@@ -1,0 +1,99 @@
+<mat-toolbar>
+  <span>User Dashboard</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+    routerLink="/"
+  >
+    <mat-icon>home</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu"
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#5f6368"
+      >
+        <path
+          d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
+        /></svg
+    ></mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<br />
+
+<div class="container">
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+    <mat-tab label="Orders History">
+      <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Order Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders | async">
+            <td>
+              <div class="d-flex align-items-center">
+                <p class="fw-bold mb-1">{{ order.product_name }}</p>
+              </div>
+            </td>
+            <td>
+              <img
+                src="images/{{ order.image }}"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+              />
+            </td>
+            <td>
+              <span ngClass="d-flex justify-content-center">{{
+                order.price
+              }}</span>
+            </td>
+            <td>
+              <span ngClass="d-flex justify-content-center">{{
+                order.quantity
+              }}</span>
+            </td>
+            <td>
+              <span
+                class="badge badge-warning rounded-pill d-flex justify-content-center"
+              >
+                {{ order.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="User Profile">Content 2</mat-tab>
+    <mat-tab label="Contact Us">Content 2</mat-tab>
+  </mat-tab-group>
+</div>
+
+<!-- 'badge badge-warning rounded-pill d-inline':
+                      order.status === 'pending',
+                    'badge badge-success rounded-pill d-inline':
+                      order.status === 'confirmed' -->

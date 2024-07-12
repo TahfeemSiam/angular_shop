@@ -1,0 +1,31 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background-color: #fc427b;
+  color: aliceblue;
+}
+
+.menu-text {
+  color: #2980b9;
+  font-size: 20px;
+}
+
+.button {
+  color: white;
+  background-color: #e84393;
+}
+
+.icon {
+  color: #fff;
+}

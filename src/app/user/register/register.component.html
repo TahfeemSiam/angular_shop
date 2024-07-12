@@ -1,0 +1,79 @@
+<div class="container-fluid background">
+  <br />
+  <mat-card class="form-card" [ngStyle]="{ width: cardWidth }">
+    <p class="form-title">
+      <mat-icon>person_add_alt </mat-icon> User Registration
+    </p>
+    <br />
+    <form class="form" #f="ngForm" (ngSubmit)="registerUser(f)">
+      <mat-form-field
+        [ngStyle]="{ width: FormFieldwidth }"
+        appearance="outline"
+      >
+        <mat-label>Enter A Username</mat-label>
+        <input
+          required
+          ngModel
+          name="username"
+          matInput
+          placeholder="Ex: Siam"
+        />
+        <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+      </mat-form-field>
+      <mat-form-field
+        [ngStyle]="{ width: FormFieldwidth }"
+        appearance="outline"
+      >
+        <mat-label>Enter Your Email</mat-label>
+        <input
+          ngModel
+          required
+          email
+          name="email"
+          matInput
+          placeholder="Ex: test@gmail.com"
+        />
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <mat-form-field
+        [ngStyle]="{ width: FormFieldwidth }"
+        appearance="outline"
+      >
+        <mat-label>Enter A Password</mat-label>
+        <input
+          ngModel
+          required
+          type="password"
+          name="password"
+          matInput
+          placeholder="Ex: 1234"
+        />
+        <mat-icon matSuffix>password</mat-icon>
+      </mat-form-field>
+      <mat-form-field
+        [ngStyle]="{ width: FormFieldwidth }"
+        appearance="outline"
+      >
+        <mat-label>Confirm Your Password</mat-label>
+        <input
+          ngModel
+          required
+          type="password"
+          name="confirmPassword"
+          matInput
+          placeholder="Ex: 1234"
+        />
+        <mat-icon matSuffix>cached</mat-icon>
+      </mat-form-field>
+      <button class="register" mat-fab extended color="primary">
+        <mat-icon>person_add</mat-icon>
+        Register
+      </button>
+    </form>
+    <br />
+    <div class="d-flex justify-content-center align-content-center">
+      <p>Already Have An Account?</p>
+      <a routerLink="/login">Login</a>
+    </div>
+  </mat-card>
+</div>

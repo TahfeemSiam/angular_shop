@@ -1,0 +1,31 @@
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-container {
+  width: 250px;
+  height: 300px;
+}
+
+swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+}

@@ -1,0 +1,118 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" [opened]="showSideNav" style="width: 250px">
+    <div
+      class="d-flex flex-column flex-shrink-0 p-3 bg-light"
+      style="width: 200px"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+      >
+        <img
+          class="bi me-2"
+          style="width: 40px; height: 32px"
+          src="01.svg"
+          alt="admin"
+        />
+        <span class="fs-5">Admin Menu</span>
+      </a>
+      <hr />
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <button
+            routerLink="/"
+            style="font-size: 20px"
+            mat-button
+            color="accent"
+          >
+            <mat-icon>home</mat-icon> Home
+          </button>
+        </li>
+        <br />
+        <li>
+          <button
+            routerLink="/admin"
+            style="font-size: 20px"
+            mat-button
+            color="accent"
+          >
+            <mat-icon>all_inclusive</mat-icon> Dashboard
+          </button>
+        </li>
+        <br />
+        <li>
+          <button
+            (click)="navigateToAddProduct()"
+            style="font-size: 20px"
+            mat-button
+            color="accent"
+          >
+            <mat-icon>add_circle_outline</mat-icon> Add Product
+          </button>
+        </li>
+        <br />
+        <li>
+          <button
+            routerLink="productsTable"
+            style="font-size: 20px"
+            mat-button
+            color="accent"
+          >
+            <mat-icon>format_list_numbered</mat-icon> Products
+          </button>
+        </li>
+        <br />
+        <li>
+          <button
+            routerLink="ordersTable"
+            style="font-size: 20px"
+            mat-button
+            color="accent"
+          >
+            <mat-icon>list_alt</mat-icon> Orders
+          </button>
+        </li>
+      </ul>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-toolbar">
+      <button
+        (click)="sideNavToggle()"
+        mat-icon-button
+        aria-label="Example icon-button with menu icon"
+        class="icon"
+      >
+        <mat-icon *ngIf="!showSideNav">menu</mat-icon>
+        <mat-icon *ngIf="showSideNav">menu_open</mat-icon>
+      </button>
+      <span>Admin Dashboard</span>
+      <span class="example-spacer"></span>
+      <button
+        mat-icon-button
+        class="icon"
+        aria-label="Example icon-button with heart icon"
+        routerLink="/"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="icon"
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+        aria-label="Example icon-button with share icon"
+      >
+        <mat-icon>account_circle ></mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

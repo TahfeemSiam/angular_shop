@@ -1,0 +1,23 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ product.product_name | substring }}...</mat-card-title>
+    <mat-card-subtitle>{{ product.product_category }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="images/{{ product.image_1 }}"
+    style="height: 300px"
+  />
+  <mat-card-content>
+    <p class="price">Price: ${{ product.product_price }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      [routerLink]="['product', product.product_id]"
+      mat-raised-button
+      [ngStyle]="{ backgroundColor: '#22a6b3', color: '#fff' }"
+    >
+      Details
+    </button>
+  </mat-card-actions>
+</mat-card>

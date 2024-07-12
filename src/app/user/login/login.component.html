@@ -1,0 +1,53 @@
+<div class="container-fluid background">
+  <br />
+  <mat-card class="form-card" [ngStyle]="{ width: cardWidth }">
+    <p class="form-title"><mat-icon>person_pin</mat-icon> User Login</p>
+    <br />
+    <form #f="ngForm" (ngSubmit)="userLogin(f)" class="form">
+      <mat-form-field
+        [ngStyle]="{ width: FormFieldwidth }"
+        appearance="outline"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          ngModel
+          email
+          name="email"
+          required
+          matInput
+          placeholder="Ex: test@gmail.com"
+        />
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <mat-form-field
+        [ngStyle]="{ width: FormFieldwidth }"
+        appearance="outline"
+      >
+        <mat-label>Password</mat-label>
+        <input
+          ngModel
+          required
+          name="password"
+          type="password"
+          matInput
+          placeholder="Ex: 1234"
+        />
+        <mat-icon matSuffix>password</mat-icon>
+      </mat-form-field>
+      <button
+        class="login"
+        mat-fab
+        extended
+        [ngStyle]="{ backgroundColor: '#e84393' }"
+      >
+        <mat-icon>login</mat-icon>
+        Login
+      </button>
+    </form>
+    <br />
+    <div class="d-flex justify-content-center align-content-center">
+      <p>Don't Have An Account?</p>
+      <a routerLink="/register">Register</a>
+    </div>
+  </mat-card>
+</div>
