@@ -1,0 +1,36 @@
+<h2 style="text-align: center" mat-dialog-title>Edit Product Info</h2>
+<mat-dialog-content style="width: 500px; height: 300px">
+  <form style="display: flex; flex-direction: column; justify-content: center">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter Product Name</mat-label>
+      <input matInput placeholder="Product Name" />
+      <mat-icon matSuffix>edit</mat-icon>
+    </mat-form-field>
+    <mat-form-field floatLabel="always">
+      <mat-label>Amount</mat-label>
+      <input
+        matInput
+        type="number"
+        class="example-right-align"
+        placeholder="0"
+      />
+      <span matTextPrefix>$&nbsp;</span>
+      <span matTextSuffix><mat-icon>price_change</mat-icon></span>
+    </mat-form-field>
+    <mat-form-field floatLabel="always">
+      <mat-label>Quantity</mat-label>
+      <input
+        matInput
+        type="number"
+        class="example-right-align"
+        placeholder="0"
+      />
+      <span matTextPrefix>+&nbsp;</span>
+      <span matTextSuffix><mat-icon>crop_rotate</mat-icon></span>
+    </mat-form-field>
+    <button mat-raised-button>Confirm Edit</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

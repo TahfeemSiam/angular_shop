@@ -5,3 +5,34 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-field {
+  width: 400px;
+}
+
+.label-text {
+  font-family: "Playwrite AU TAS", cursive;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+}
+
+.update {
+  background-color: #1abc9c;
+  color: white;
+  width: 150px;
+}
+
+.card {
+  width: 500px;
+  height: 450px;
+  margin: 0 auto;
+}

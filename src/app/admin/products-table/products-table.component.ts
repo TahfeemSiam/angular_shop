@@ -1,9 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../../product/product.model';
 import { AdminService } from '../admin.service';
 import { AngularMaterialModule } from '../../angular-material/angular-material.module';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-products-table',
@@ -31,7 +32,7 @@ export class ProductsTableComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -51,4 +52,17 @@ export class ProductsTableComponent {
       );
     });
   }
+
+  editProductDialog() {
+    this.dialog.open(EditProductDialog);
+  }
 }
+
+@Component({
+  selector: 'edit-product-dialog',
+  templateUrl: 'edit-product-dialog.html',
+  standalone: true,
+  imports: [AngularMaterialModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class EditProductDialog {}

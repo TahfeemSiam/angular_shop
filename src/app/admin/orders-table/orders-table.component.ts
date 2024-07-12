@@ -6,15 +6,8 @@ import {
   inject,
 } from '@angular/core';
 import { AngularMaterialModule } from '../../angular-material/angular-material.module';
-import { MatButtonModule } from '@angular/material/button';
-import {
-  MatDialog,
-  MatDialogTitle,
-  MatDialogContent,
-  MatDialogActions,
-  MatDialogClose,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -70,13 +63,7 @@ export class OrdersTableComponent {
   selector: 'confirm-order-dialog',
   templateUrl: 'confirm-order-dialog.html',
   standalone: true,
-  imports: [
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-    MatButtonModule,
-  ],
+  imports: [AngularMaterialModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmOrderDialog {
