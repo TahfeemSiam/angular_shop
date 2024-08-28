@@ -89,27 +89,22 @@
       </table>
     </mat-tab>
     <mat-tab label="User Profile">
-      <form>
+      <form #f="ngForm" (ngSubmit)="userUpdate(f)">
         <mat-card class="user-profile card shadow-lg border-bottom">
           <p class="label-text">Edit User Information</p>
           <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Enter Your Username</mat-label>
-            <input matInput placeholder="Username" />
+            <mat-label>Enter A New Username</mat-label>
+            <input ngModel name="username" matInput placeholder="Username" />
             <mat-icon matSuffix>person</mat-icon>
           </mat-form-field>
           <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Enter Your Email</mat-label>
-            <input matInput placeholder="Email" />
+            <mat-label>Enter A New Email</mat-label>
+            <input ngModel name="email" matInput placeholder="Email" />
             <mat-icon matSuffix>mail</mat-icon>
           </mat-form-field>
           <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Enter Your Current Password</mat-label>
-            <input matInput placeholder="Current Password" />
-            <mat-icon matSuffix>pattern</mat-icon>
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="form-field">
             <mat-label>Enter A New Password</mat-label>
-            <input matInput placeholder="Password" />
+            <input ngModel name="password" matInput placeholder="Password" />
             <mat-icon matSuffix>password</mat-icon>
           </mat-form-field>
           <button class="update" mat-fab extended>
@@ -118,6 +113,17 @@
         </mat-card>
       </form>
     </mat-tab>
-    <mat-tab label="Contact Us">Content 2</mat-tab>
+    <mat-tab label="Contact Us">
+      <form class="user-profile" style="height: 320px">
+        <mat-form-field class="contact-form-field">
+          <mat-label>Contact Us</mat-label>
+          <textarea matInput placeholder="Write your query here..."></textarea>
+        </mat-form-field>
+        <button mat-fab extended>
+          <mat-icon>favorite</mat-icon>
+          Send Message
+        </button>
+      </form>
+    </mat-tab>
   </mat-tab-group>
 </div>

@@ -10,6 +10,20 @@ body {
   align-items: center;
 }
 
+.edu-vic-wa-nt-beginner {
+  font-family: "Edu VIC WA NT Beginner";
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.raleway {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 swiper-container {
   width: 250px;
   height: 300px;
@@ -28,4 +42,43 @@ swiper-slide {
 .image {
   max-width: 100%;
   max-height: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  height: 150px;
+}
+
+.user-review {
+  margin-top: 100px;
+}
+
+.example-card {
+  max-width: 800px;
+  margin-bottom: 8px;
+}
+
+.date {
+  font-size: 11px;
+}
+.comment-text {
+  font-size: 20px;
+}
+.fs-12 {
+  font-size: 12px;
+}
+.shadow-none {
+  box-shadow: none;
+}
+.name {
+  color: #007bff;
+}
+.cursor:hover {
+  color: blue;
+}
+.cursor {
+  cursor: pointer;
+}
+.textarea {
+  resize: none;
 }

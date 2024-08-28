@@ -1,12 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Review } from './review.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  reviewAdded = new Subject<boolean>();
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -27,6 +31,24 @@ export class UserService {
       });
   }
 
+  updateUser(
+    user_id: number,
+    username: string,
+    email: string,
+    password: string
+  ) {
+    this.http
+      .patch(`http://localhost:4000/api/user/userUpdate/${user_id}`, {
+        username,
+        email,
+        password,
+      })
+      .subscribe({
+        next: (res) => console.log(res),
+        error: (err) => console.error(err),
+      });
+  }
+
   LoginUser(user: { email: string; password: string }) {
     this.http
       .post('http://localhost:4000/api/user/userLogin', user, {
@@ -43,6 +65,7 @@ export class UserService {
             this.cookieService.set('authenticated', 'true');
             this.cookieService.set('user', res.user_id);
             localStorage.setItem('jwt', res.token);
+            localStorage.setItem('username', res.username);
             this.router.navigate(['/user', this.cookieService.get('user')]);
           }
         },
@@ -65,9 +88,23 @@ export class UserService {
           this.cookieService.delete('admin');
           this.cookieService.delete('user');
           localStorage.removeItem('jwt');
+          localStorage.removeItem('username');
           this.router.navigate(['/login']);
         },
         error: (error) => console.log(error),
       });
+  }
+
+  addReview(review: Review) {
+    const httpHeaders: HttpHeaders = new HttpHeaders({
+      authorization: String(localStorage.getItem('jwt')),
+    });
+    return this.http.post(
+      `http://localhost:4000/api/user/addReview/${review.product_id}`,
+      review,
+      {
+        headers: httpHeaders,
+      }
+    );
   }
 }

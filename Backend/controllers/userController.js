@@ -68,7 +68,7 @@ exports.userLogin = (req, res) => {
   const password = req.body.password;
 
   const query =
-    "SELECT user_id, user_role, password FROM users WHERE email = ?";
+    "SELECT user_id, username, user_role, password FROM users WHERE email = ?";
 
   if (!validator.isEmail(email)) {
     res.status(400).json({
@@ -92,6 +92,7 @@ exports.userLogin = (req, res) => {
               message: "User Logged In",
               user_id: result[0].user_id,
               user_role: result[0].user_role,
+              username: result[0].username,
               token: token,
             });
           } else {
@@ -135,4 +136,56 @@ exports.userLogout = (req, res) => {
   res.status(200).json({
     message: "User Logged Out Successfully",
   });
+};
+
+exports.updateUserInfo = (req, res) => {
+  const query =
+    "UPDATE users SET username = ?, email = ?, password = ?, user_role = ? WHERE user_id = ?";
+  const saltRounds = 10;
+  let user = new User(
+    req.body.username,
+    req.body.email,
+    req.body.password,
+    "user"
+  );
+  // connection.query(
+  //   query,
+  //   [user.username, user.email, user.password, user.user_role, req.params.id],
+  //   (error, result) => {
+  //     res.status(200).json({
+  //       message: "User Successfully Updated",
+  //       data: result,
+  //     });
+  //   }
+  // );
+  bcrypt.hash(user.password, saltRounds, function (err, hash) {
+    const userData = [
+      user.username,
+      user.email,
+      hash,
+      user.user_role,
+      req.params.user_id,
+    ];
+    connection.query(query, userData, (error, result) => {
+      res.status(200).json({
+        message: "User Successfully Updated",
+        data: result,
+      });
+    });
+  });
+};
+
+exports.addReview = (req, res) => {
+  const query =
+    "INSERT INTO reviews(product_id, user_id, username, review, date) VALUES(?, ?, ?, ?, CURDATE())";
+  connection.query(
+    query,
+    [req.params.id, req.body.user_id, req.body.username, req.body.review],
+    (error, review) => {
+      res.status(200).json({
+        message: "Review Added",
+        review,
+      });
+    }
+  );
 };

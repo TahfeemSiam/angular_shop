@@ -1,6 +1,13 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, Inject } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  Inject,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { AngularMaterialModule } from '../../angular-material/angular-material.module';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
@@ -13,6 +20,10 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
 } from '@angular/material/dialog';
+import { UserService } from '../../user/user.service';
+import { Review } from '../../user/review.model';
+import { Reviews } from '../../user/reviews.interface';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -22,19 +33,32 @@ import {
   styleUrl: './product-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit {
   product!: Observable<Product[]>;
+  productReviews!: Observable<Reviews[]>;
+  productId!: number;
+  productReview!: string;
+  addingReview: boolean = false;
+
+  change: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    public dialog: MatDialog,
+    private cookieService: CookieService,
     private cartService: CartService,
-    public dialog: MatDialog
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.product = this.productService.getProduct(params['id']);
+      this.productId = params['id'];
+      this.product = this.productService.getProduct(String(this.productId));
+      this.productReviews = this.productService.getProductReview(
+        this.productId
+      );
     });
   }
 
@@ -58,6 +82,33 @@ export class ProductDetailComponent {
     this.cartService.addToCart(
       new Cart(userId, id, name, image, price, Number(qunatity._value), status)
     );
+  }
+
+  addProductReview() {
+    if (
+      this.productReview !== '' &&
+      localStorage.getItem('username') &&
+      localStorage.getItem('jwt')
+    ) {
+      this.addingReview = true;
+      const review = new Review(
+        Number(this.productId),
+        Number(this.cookieService.get('user')),
+        String(localStorage.getItem('username')),
+        this.productReview
+      );
+      this.userService.addReview(review).subscribe({
+        next: () => {
+          this.productReviews = this.productService.getProductReview(
+            this.productId
+          );
+          this.addingReview = false;
+        },
+        error: (error) => console.log(error),
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }
 

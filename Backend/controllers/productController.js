@@ -32,3 +32,14 @@ exports.getProductById = (req, res) => {
     });
   });
 };
+
+exports.getProductReviewsById = (req, res) => {
+  let productId = req.params.id;
+  let query = "SELECT * FROM reviews WHERE product_id = ?";
+  connection.query(query, [productId], (error, reviews) => {
+    res.status(200).json({
+      message: "Fetched All Reviews For A Product",
+      reviews,
+    });
+  });
+};
